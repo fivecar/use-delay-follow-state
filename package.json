@@ -11,7 +11,7 @@
   ],
   "author": "Philip Su",
   "license": "MIT",
-  "repository": "makannew/use-delay-follow-state",
+  "repository": "fivecar/use-delay-follow-state",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

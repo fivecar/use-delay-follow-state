@@ -39,7 +39,7 @@ export default function myComponent() {
 ```
 In above example `State` will be updated after 5 second.
 
-[Debouncing example](https://makannew.github.io/use-delay-follow-state/) is more advance implementation of this hook which the source code is available [here](https://github.com/makannew/use-delay-follow-state/blob/master/example/src/App.js).
+[Debouncing example](https://fivecar.github.io/use-delay-follow-state/) is more advance implementation of this hook which the source code is available [here](https://github.com/fivecar/use-delay-follow-state/blob/master/example/src/App.js).
 
 
 ## Usage details
@@ -72,4 +72,4 @@ setState(futureState, 2000);
 
 ## License
 
-MIT © [makannew](https://github.com/makannew)
+MIT © [fivecar](https://github.com/fivecar)
