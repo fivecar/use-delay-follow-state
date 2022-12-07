@@ -34,3 +34,23 @@ export default function useDelayedState(initialState) {
 
   return [state, setStateAfter, cancelSetState];
 }
+
+/**
+ * Hook that gives you both an immediately-set state as well as one that will
+ * become that state after a delay. Most commonly used for cases where you have
+ * a controlled input box, for instance, and you want to also issue an async
+ * query after the user has paused typing for a while.
+ * @param {any} initialState
+ * @returns currentState, delayedState, and setState function
+ */
+export function useFollowState(initialState) {
+  const [state, setState] = useState(initialState);
+  const [followState, setFollowState] = useDelayedState(initialState);
+
+  const setStateAndFollow = (newState, delay) => {
+    setState(newState);
+    setFollowState(newState, delay);
+  };
+
+  return [state, followState, setStateAndFollow];
+}

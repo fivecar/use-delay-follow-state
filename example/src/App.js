@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-import useDelayedState from "use-delay-follow-state";
+import useDelayedState, { useFollowState } from "use-delay-follow-state";
 
 const App = () => {
-  const [state, setState] = useDelayedState("");
+  const [state, followState, setState] = useFollowState("");
   const [delay, setDelay] = useState(900);
-  const [updating, setUpdating] = useDelayedState(() => false);
+  const [updating, setUpdating] = useDelayedState(false);
   function handleChange(e) {
     setState(e.target.value, delay);
   }
 
   useEffect(() => {
-    setUpdating(() => true);
-    setUpdating(() => false, 1000);
-  }, [state, setUpdating]);
+    setUpdating(true);
+    setUpdating(false, 1000);
+    // need to not include setUpdating in dep list
+    // eslint-disable-next-line
+  }, [state]);
 
   return (
     <div>
@@ -30,6 +32,7 @@ const App = () => {
               type="text"
               placeholder="Type something"
               onChange={handleChange}
+              value={state}
             />
             <label htmlFor="delay">{`Debouncing delay ${delay}ms`}</label>
             <input
@@ -49,7 +52,7 @@ const App = () => {
         <div className="form-container">
           <form>
             <h4>Debounced State</h4>
-            <p className={updating ? "updating" : ""}>{state}</p>
+            <p className={updating ? "updating" : ""}>{followState}</p>
           </form>
         </div>
       </div>
