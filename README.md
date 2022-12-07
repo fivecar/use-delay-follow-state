@@ -1,8 +1,8 @@
-# use-delayed-state
+# use-delay-follow-state
 
 > React hook for setting State with delay
 
-[![NPM](https://img.shields.io/npm/v/use-delayed-state.svg)](https://www.npmjs.com/package/use-delayed-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/use-delay-follow-state.svg)](https://www.npmjs.com/package/use-delay-follow-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This is an enhanced `useState` hook which accepts delay for `setState` as an extra argument. In most basic form it works same as React `useState` hook.
 
@@ -18,14 +18,14 @@ It is also a handy tool for applying timing logics inside react components e.g. 
 ## Install
 
 ```console
-npm install --save use-delayed-state
+npm install --save use-delay-follow-state
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import useDelayedState from 'use-delayed-state'
+import useDelayedState from 'use-delay-follow-state'
 
 export default function myComponent() {
   const [state, setState] = useDelayedState(
@@ -39,7 +39,7 @@ export default function myComponent() {
 ```
 In above example `State` will be updated after 5 second.
 
-[Debouncing example](https://makannew.github.io/use-delayed-state/) is more advance implementation of this hook which the source code is available [here](https://github.com/makannew/use-delayed-state/blob/master/example/src/App.js).
+[Debouncing example](https://makannew.github.io/use-delay-follow-state/) is more advance implementation of this hook which the source code is available [here](https://github.com/makannew/use-delay-follow-state/blob/master/example/src/App.js).
 
 
 ## Usage details

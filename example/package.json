@@ -1,13 +1,13 @@
 {
-  "name": "use-delayed-state-example",
-  "homepage": "https://makannew.github.io/use-delayed-state",
+  "name": "use-delay-follow-state-example",
+  "homepage": "https://makannew.github.io/use-delay-follow-state",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
-    "use-delayed-state": "file:.."
+    "use-delay-follow-state": "file:.."
   },
   "scripts": {
     "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",

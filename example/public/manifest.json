@@ -1,6 +1,6 @@
 {
-  "short_name": "use-delayed-state",
-  "name": "use-delayed-state",
+  "short_name": "use-delay-follow-state",
+  "name": "use-delay-follow-state",
   "icons": [
     {
       "src": "favicon.ico",
