@@ -45,12 +45,22 @@ export default function useDelayedState(initialState) {
  */
 export function useFollowState(initialState) {
   const [state, setState] = useState(initialState);
-  const [followState, setFollowState] = useDelayedState(initialState);
+  const [followState, setFollowState, cancelFollowState] =
+    useDelayedState(initialState);
 
   const setStateAndFollow = (newState, delay) => {
     setState(newState);
     setFollowState(newState, delay);
   };
 
-  return [state, followState, setStateAndFollow];
+  // This is meant for cases where you've set a state with a delay, but you've
+  // now changed your mind and would like to undo that within the delay window.
+  const revertStateToFollow = () => {
+    cancelFollowState();
+    if (state !== followState) {
+      setState(followState);
+    }
+  };
+
+  return [state, followState, setStateAndFollow, revertStateToFollow];
 }
