@@ -1,6 +1,6 @@
 {
   "name": "use-delay-follow-state",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React hook for setting State immediately and with delay",
   "keywords": [
     "react",
