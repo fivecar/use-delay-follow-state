@@ -1,5 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 
+/**
+ * Enhancement of useState that sets a state after an (optional) delay in
+ * milliseconds. Can be canceled with `cancelSetState`.
+ * @param {any} initialState - The state you want to start with
+ * @returns {[any, (any, number) => void, () => void]} [state, setStateAfter, cancelSetState]
+ */
 export function useDelayedState(initialState) {
   const [state, setState] = useState(initialState);
   const timeoutRef = useRef();
@@ -40,8 +46,13 @@ export function useDelayedState(initialState) {
  * become that state after a delay. Most commonly used for cases where you have
  * a controlled input box, for instance, and you want to also issue an async
  * query after the user has paused typing for a while.
- * @param {any} initialState
- * @returns currentState, delayedState, and setState function
+ *
+ * Call `setStateAndFollow` to have state immediately set to a value, with
+ * followState to be set to the same value after duration millisecs.
+ * `revertStateToFollow` cancels any timers and sets state back to the value
+ * that followState currently has.
+ * @param {any} initialState - The state that
+ * @returns {[any, any, (any, number) => void, ()=>void]} currentState, delayedState, setState, and revert function
  */
 export function useFollowState(initialState) {
   const [state, setState] = useState(initialState);
