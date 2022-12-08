@@ -7,7 +7,9 @@ import { useEffect, useRef, useState } from "react";
  * @param {T} initialState - The state you want to start with
  * @returns [state: T, setStateAfter: (newState: T, delayMS?: number) => void, cancelSetState: () => void]
  */
-export function useDelayedState<T>(initialState: T) {
+export function useDelayedState<T>(
+  initialState: T
+): [T, (newState: T, delayMS?: number) => void, () => void] {
   const [state, setState] = useState(initialState);
   const timeoutRef = useRef();
 
@@ -57,7 +59,9 @@ export function useDelayedState<T>(initialState: T) {
  * @param {T} initialState - The state you want initially
  * @returns [currentState: T, delayedState: T, setStateAndFollow: (newState: T, delayMS?: number) => void, revertStateToFollow: () => void]
  */
-export function useFollowState<T>(initialState: T) {
+export function useFollowState<T>(
+  initialState: T
+): [T, T, (newState: T, delayMS?: number) => void, () => void] {
   const [state, setState] = useState(initialState);
   const [followState, setFollowState, cancelFollowState] =
     useDelayedState(initialState);
