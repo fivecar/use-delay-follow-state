@@ -15,14 +15,14 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepublish": "run-s build",
+    "prepublish": "run-s build && tsc",
     "release": "release-it",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
