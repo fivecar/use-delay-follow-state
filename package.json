@@ -12,7 +12,7 @@
   "author": "Philip Su",
   "license": "MIT",
   "repository": "fivecar/use-delay-follow-state",
-  "main": "dist/index.umd.js",
+  "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
