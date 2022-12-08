@@ -107,20 +107,18 @@ setState(futureState, 2000);
 ## `useFollowState` Details
 
 ```jsx
-const [immediate, delayed, setFollowState, revertStateToFollow] =
+const [immediate, delayed, setFollowState] =
   useFollowState(initialState);
 
-// immediate will be "montauk" right away, like a regular setState.
-// delayed will remain initialState for 500ms, then become "montauk" as well.
+// `immediate` will be "montauk" right away, like a regular `setState`.
+// `delayed` will remain `initialState` for 500ms, then become "montauk" also.
 // Useful for cases where UI needs to show a change right away, but some
 // background process, like a cloud call, needs to debounce/delay a bit.
 setFollowState("montauk", 500);
 
-// Several seconds later, you want to set a new state...
-setFollowState("lisbon", 2000);
-// ... but then you decide that you should cancel that, within the
-// 2000ms, so that immediate === delayed === "montauk":
-revertStateToFollow();
+// Several seconds later, you want to set a new state. With 0 or ommitted
+// duration, both `immediate` and `delayed` will be "lisbon" right away.
+setFollowState("lisbon");
 ```
 
 ## License

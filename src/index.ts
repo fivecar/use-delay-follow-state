@@ -51,34 +51,24 @@ export function useDelayedState<T>(
  * query after the user has paused typing for a while.
  *
  * Call `setStateAndFollow` to have state immediately set to a value, with
- * followState to be set to the same value after duration millisecs.
- * `revertStateToFollow` cancels any timers and sets state back to the value
- * that followState currently has.
+ * followState to be set to the same value after duration millisecs. Zero or
+ * omitted millisecs sets the followState immediately.
  *
  * @template T
  * @param {T} initialState - The state you want initially
- * @returns [currentState: T, delayedState: T, setStateAndFollow: (newState: T, delayMS?: number) => void, revertStateToFollow: () => void]
+ * @returns [state: T, delayedState: T, setAndFollow: (newState: T, delayMS?:
+ * number) => void]
  */
 export function useFollowState<T>(
   initialState: T
-): [T, T, (newState: T, delayMS?: number) => void, () => void] {
+): [T, T, (newState: T, delayMS?: number) => void] {
   const [state, setState] = useState(initialState);
-  const [followState, setFollowState, cancelFollowState] =
-    useDelayedState(initialState);
+  const [followState, setFollowState] = useDelayedState(initialState);
 
-  const setStateAndFollow = (newState: T, delayMS?: number) => {
+  const setAndFollow = (newState: T, delayMS?: number) => {
     setState(newState);
     setFollowState(newState, delayMS);
   };
 
-  // This is meant for cases where you've set a state with a delay, but you've
-  // now changed your mind and would like to undo that within the delay window.
-  const revertStateToFollow = () => {
-    cancelFollowState();
-    if (state !== followState) {
-      setState(followState);
-    }
-  };
-
-  return [state, followState, setStateAndFollow, revertStateToFollow];
+  return [state, followState, setAndFollow];
 }
