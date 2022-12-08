@@ -30,7 +30,7 @@ yarn add use-delay-follow-state
 
 ```jsx
 import React from 'react'
-import useDelayedState from 'use-delay-follow-state'
+import { useDelayedState } from 'use-delay-follow-state'
 
 export default function myComponent() {
   const [state, setState] = useDelayedState(
@@ -49,8 +49,8 @@ component needs both an immediately-updated state as well as one that has a
 delay. For instance:
 
 ```jsx
-import React, {useState, useEffect} from 'react'
-import {useFollowState} from 'use-delay-follow-state'
+import React, { useState, useEffect } from 'react'
+import { useFollowState } from 'use-delay-follow-state'
 
 export default function myComponent() {
   const [typedText, query, setText] = useFollowState("");

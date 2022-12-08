@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import useDelayedState, { useFollowState } from "use-delay-follow-state";
+import { useDelayedState, useFollowState } from "use-delay-follow-state";
 
 const App = () => {
   const [state, followState, setState] = useFollowState("");

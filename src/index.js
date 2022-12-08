@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-export default function useDelayedState(initialState) {
+export function useDelayedState(initialState) {
   const [state, setState] = useState(initialState);
   const timeoutRef = useRef();
 
