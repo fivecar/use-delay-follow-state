@@ -1,12 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Enhancement of useState that sets a state after an (optional) delay in
  * milliseconds. Can be canceled with `cancelSetState`.
- * @param {any} initialState - The state you want to start with
- * @returns {[any, (any, number) => void, () => void]} [state, setStateAfter, cancelSetState]
+ * @template T
+ * @param {T} initialState - The state you want to start with
+ * @returns [state: T, setStateAfter: (newState: T, delayMS?: number) => void, cancelSetState: () => void]
  */
-export function useDelayedState(initialState) {
+export function useDelayedState<T>(initialState: T) {
   const [state, setState] = useState(initialState);
   const timeoutRef = useRef();
 
@@ -17,18 +18,18 @@ export function useDelayedState(initialState) {
     }
   };
 
-  const setStateAfter = (newState, delay) => {
+  const setStateAfter = (newState: T, delayMS?: number) => {
     // The implication here is that setStateAfter("hi", 3000) followed shortly
     // by setStateAfter("bye") should cancel the original "hi".
     cancelSetState();
 
-    if (delay === 0 || delay === undefined) {
+    if (delayMS === 0 || delayMS === undefined) {
       setState(newState);
     } else {
       timeoutRef.current = setTimeout(() => {
         setState(newState);
         timeoutRef.current = null;
-      }, delay);
+      }, delayMS);
     }
   };
 
@@ -51,17 +52,19 @@ export function useDelayedState(initialState) {
  * followState to be set to the same value after duration millisecs.
  * `revertStateToFollow` cancels any timers and sets state back to the value
  * that followState currently has.
- * @param {any} initialState - The state that
- * @returns {[any, any, (any, number) => void, ()=>void]} currentState, delayedState, setState, and revert function
+ *
+ * @template T
+ * @param {T} initialState - The state you want initially
+ * @returns [currentState: T, delayedState: T, setStateAndFollow: (newState: T, delayMS?: number) => void, revertStateToFollow: () => void]
  */
-export function useFollowState(initialState) {
+export function useFollowState<T>(initialState: T) {
   const [state, setState] = useState(initialState);
   const [followState, setFollowState, cancelFollowState] =
     useDelayedState(initialState);
 
-  const setStateAndFollow = (newState, delay) => {
+  const setStateAndFollow = (newState: T, delayMS?: number) => {
     setState(newState);
-    setFollowState(newState, delay);
+    setFollowState(newState, delayMS);
   };
 
   // This is meant for cases where you've set a state with a delay, but you've

@@ -12,9 +12,9 @@
   "author": "Philip Su",
   "license": "MIT",
   "repository": "fivecar/use-delay-follow-state",
-  "main": "dist/index.js",
+  "main": "dist/index.umd.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "engines": {
     "node": ">=10"
@@ -22,7 +22,7 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepublish": "run-s build && tsc",
+    "prepublish": "run-s build",
     "release": "release-it",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
